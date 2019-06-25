@@ -27,3 +27,6 @@ If you enter the length and width of the petals in an x-y digram and color the d
 ``` R
 ggplot(iris,aes(x = Petal.Length, y = Petal.Width, col = Species)) + geom_point()
 ```
+
+
+![Cluster plot](./cluster.png?raw=true "Cluster plot")
