@@ -32,11 +32,12 @@ ggplot(iris,aes(x = Petal.Length, y = Petal.Width, col = Species)) + geom_point(
 
 
 ### Find Clusters
+Since the initial centers at k-means are chosen randomly, it is important to initialize the random generator with a fixed number to get reproducible results.
 ```R
 set.seed(111)
 ```
 
-Based on the plot created above, we already know that we are looking for 3 clusters. Of course, this approach is no longer applicable for more complex problems, but as a first introduction to the topic k-means quite practicable. With the command `kmeans` we start the cluster search. As input we use the variables Petal.Length and Petal.Width already used in the plot above (`iris[, 3:4]`). Furthermore, we specify that we want to partition the dataset into 3 clusters (`centers = 3`). 
+Based on the plot created above, we already know that we are looking for 3 clusters. Of course, this approach is no longer applicable for more complex problems, but as a first introduction to the topic k-means quite practicable. With the command `kmeans` we start the cluster search. As input we use the variables Petal.Length and Petal.Width already used in the plot above (`iris[, 3:4]`). Furthermore, we specify that we want to partition the dataset into 3 clusters (`centers = 3`). To make the result of the cluster analysis more stable in relation to the randomly selected starting points, we start the analysis with 20 random sets (`nstart = 20`). 
 ```R
 guess_cluster <- kmeans(iris[, 3:4], centers = 3, nstart = 20)
 table(guess_cluster$cluster,iris$Species)
