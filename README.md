@@ -40,5 +40,17 @@ set.seed(111)
 Based on the plot created above, we already know that we are looking for 3 clusters. Of course, this approach is no longer applicable for more complex problems, but as a first introduction to the topic k-means quite practicable. With the command `kmeans` we start the cluster search. As input we use the variables Petal.Length and Petal.Width already used in the plot above (`iris[, 3:4]`). Furthermore, we specify that we want to partition the dataset into 3 clusters (`centers = 3`). To make the result of the cluster analysis more stable in relation to the randomly selected starting points, we start the analysis with 20 random sets (`nstart = 20`). 
 ```R
 guess_cluster <- kmeans(iris[, 3:4], centers = 3, nstart = 20)
-table(guess_cluster$cluster,iris$Species)
 ```
+
+After the analysis has been done we want to determine how many entries have been assigned to the correct species. 
+```R
+table(guess_cluster$cluster, iris$Species)
+```
+
+|Group  |setosa | versicolor |virginica|
+| ---   | ---   | ---        | ---     |
+| 1     | 50    | 0          |   0     |
+| 2     |  0    | 48         |   4     |
+| 3     |  0    | 2          |   46    |
+
+All elements that are not on the diagonal show incorrectly classified entries. So we see that only 6 out of 150 data points were wrongly classified. The success rate is therefore 96%.
